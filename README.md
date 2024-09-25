@@ -11,7 +11,10 @@ Built with **TypeScript**, this repo primarily leverages **LangChain**'s family 
   - [Conversation Tagging](#conversation-tagging)
 
 ## Getting Started
+>
 > **NOTE:** Eventually these explorations will be hosted and *explore-able* on a website, but for now, you can run them locally.
+
+### Local Development
 
 1. **Clone the repository** and install dependencies:
 
