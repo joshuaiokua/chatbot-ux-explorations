@@ -13,8 +13,7 @@
   "license": "ISC",
   "workspaces": [
     "frontend",
-    "backend",
-    "shared"
+    "backend"
   ],
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
