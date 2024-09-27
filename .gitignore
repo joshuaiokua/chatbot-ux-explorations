@@ -133,4 +133,3 @@ dist
 .vscode/
 pn.ipynb
 znotes.md
-deno.lock
