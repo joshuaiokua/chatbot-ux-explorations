@@ -1,26 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  List,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Box, Paper, Button, Typography, Stack } from "@mui/material";
 
 const Launchpad: React.FC = () => {
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Launchpad
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      flexDirection={"column"}
+    >
+      <Typography variant="h1" align="center" gutterBottom>
+        Chatbot UX
       </Typography>
-      <List>
-        <ListItemButton component={Link} to="/conversation-tagging">
-          <ListItemText primary="Conversation Tagging" />
-        </ListItemButton>
-        {/* Add other explorations as needed */}
-      </List>
-    </Container>
+      <Button
+        variant="outlined"
+        color="primary"
+        component={Link}
+        to="/conversation-tagging"
+        sx={{borderRadius: 0}}
+      >
+        conversation tagging
+      </Button>
+    </Box>
   );
 };
 
