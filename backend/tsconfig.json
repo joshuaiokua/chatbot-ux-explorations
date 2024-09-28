@@ -10,8 +10,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true, // Required for Deno
-    "allowImportingTsExtensions": true // Required for Deno
   },
   "include": [
     "src/**/*"
