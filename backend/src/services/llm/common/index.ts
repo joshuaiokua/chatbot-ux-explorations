@@ -82,7 +82,7 @@ export const listModels = async (
 
   // If sparse is true, return only the model IDs (names), otherwise return full model objects
   if (sparse) {
-    return models.map((model: any) => model.id);
+    return models.map((model) => model.id);
   }
 
   return models;
