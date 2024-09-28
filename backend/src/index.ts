@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3001;
 
 // Enable CORS and specify allowed origins
 app.use(cors({
-  origin: 'http://localhost:3000',  // Allow requests from your frontend
+  origin: 'http://localhost:3000',  // Allow requests from Frontend Port
   methods: ['GET', 'POST'],  // Allow these HTTP methods
   credentials: true,  // Allow cookies or credentials if necessary
 }));
