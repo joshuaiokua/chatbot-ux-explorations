@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Paper, Button, Typography, Stack } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 const Launchpad: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const Launchpad: React.FC = () => {
         color="primary"
         component={Link}
         to="/conversation-tagging"
-        sx={{borderRadius: 0}}
+        sx={{ borderRadius: 0 }}
       >
         conversation tagging
       </Button>

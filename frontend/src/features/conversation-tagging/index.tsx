@@ -1,16 +1,11 @@
 import React from "react";
-import { Container, Typography } from "@mui/material";
+import Chat from "../../shared/components/Chat";
 
 const ConversationTagging: React.FC = () => {
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Conversation Tagging
-      </Typography>
-      <Typography>
-        This is a placeholder for the conversation tagging exploration.
-      </Typography>
-    </Container>
+    <div>
+      <Chat />
+    </div>
   );
 };
 
