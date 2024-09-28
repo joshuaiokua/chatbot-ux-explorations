@@ -1,4 +1,4 @@
-// External Libraries
+// External imports
 import { MemorySaver } from "@langchain/langgraph";
 import {
   END,
@@ -8,12 +8,12 @@ import {
 } from "@langchain/langgraph";
 import { ChatGroq } from "@langchain/groq";
 
-// Internal Libraries
+// Internal imports
 import {
   SimpleStateAnnotation,
   SimpleStateType,
   callModel,
-} from "./common/index.ts";
+} from "./common/";
 
 /**
  * Creates a simple chatbot graph with a single node that calls a language model.

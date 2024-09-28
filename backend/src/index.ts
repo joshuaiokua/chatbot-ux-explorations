@@ -4,24 +4,27 @@
  * @description This module is the entry point for the backend server, initializing the server and setting up the routes.
  */
 
-// External Libraries
+// External imports and setup
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 
-// Load environment variables
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../../.env") }); // load environment variables
 
-// Internal Libraries
+// Internal imports
 import chatRoutes from "./routes/chatRoutes";
 
 // Initialize the server
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors());
+// Enable CORS and specify allowed origins
+app.use(cors({
+  origin: 'http://localhost:3000',  // Allow requests from your frontend
+  methods: ['GET', 'POST'],  // Allow these HTTP methods
+  credentials: true,  // Allow cookies or credentials if necessary
+}));
 app.use(express.json());
 
 // Routes
