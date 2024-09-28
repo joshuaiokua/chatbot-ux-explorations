@@ -1,12 +1,36 @@
+/**
+ * @module index.ts
+ *
+ * @description This module is the entry point for the backend server, initializing the server and setting up the routes.
+ */
+
+// External imports and setup
 import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import path from "path";
 
+dotenv.config({ path: path.resolve(__dirname, "../../.env") }); // load environment variables
+
+// Internal imports
+import chatRoutes from "./routes/chatRoutes";
+
+// Initialize the server
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3001;
 
-app.get("/", (req, res) => {
-  res.send("Hello from LLM Interactivity Backend!");
-});
+// Enable CORS and specify allowed origins
+app.use(cors({
+  origin: 'http://localhost:3000',  // Allow requests from Frontend Port
+  methods: ['GET', 'POST'],  // Allow these HTTP methods
+  credentials: true,  // Allow cookies or credentials if necessary
+}));
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Backend server running on http://localhost:${port}`);
+// Routes
+app.use("/api/chat", chatRoutes);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
