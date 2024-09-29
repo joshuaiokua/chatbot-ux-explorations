@@ -1,10 +1,10 @@
 import React from "react";
-import Chat from "../../shared/components/Chat";
+import ChatInterface from "../../shared/components/ChatInterface";
 
 const ConversationTagging: React.FC = () => {
   return (
     <div>
-      <Chat />
+      <ChatInterface />
     </div>
   );
 };

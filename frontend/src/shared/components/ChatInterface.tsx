@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Chat: React.FC = () => {
+const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<{ role: string; content: string }[]>(
     []
   );
@@ -75,4 +75,4 @@ const Chat: React.FC = () => {
   );
 };
 
-export default Chat;
+export default ChatInterface;
