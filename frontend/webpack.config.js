@@ -15,7 +15,8 @@ export default {
   devServer: {
     static: join(__dirname, 'public'),
     port: 3000,
-    open: true, // Automatically open the browser
+    open: false, // Automatically open the browser if `true`
+    hot: true, // Enable hot module replacement feature
   },
   module: {
     rules: [
