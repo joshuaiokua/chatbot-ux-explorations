@@ -5,14 +5,25 @@
  * @description This module provides utilities and functionality for handling client-side message actions and backend communication.
  */
 
-import { Message, MessageSetter } from "../../types";
 import { baseURL } from "../constants";
+import { MessageSetter } from "../../types";
 
+/**
+ * Handle a chunk of a message response.
+ * 
+ * @param responseBuffer - The current response buffer
+ * @param setMessages - The state setter for the messages array
+ * @param modelRole - The role of the model in the conversation
+ * 
+ * TODO: Revisit the implementation of this function to handle message chunks more effectively.
+ */
 export const handleMessageChunk = async (
-  chunk: string,
+  responseBuffer: string,
   setMessages: MessageSetter,
   modelRole: string
 ) => {
+    
+  // Append the chunk to the last AI message
   setMessages((prevMessages) => {
     const updatedMessages = [...prevMessages];
     const lastAIMessageIndex = updatedMessages
@@ -21,16 +32,28 @@ export const handleMessageChunk = async (
 
     // Append the chunk to the last AI message
     if (lastAIMessageIndex !== -1) {
-      updatedMessages[lastAIMessageIndex].content += chunk;
+      updatedMessages[lastAIMessageIndex].content = responseBuffer;
     }
 
     return updatedMessages;
   });
 };
 
+/**
+ * Send a message to the backend and handle the streaming response.
+ * 
+ * @param userInput - The user's input message
+ * @param setMessages - The state setter for the messages array
+ * @param endpoint - The API endpoint to send the message to
+ * @param endpointKey - The key for the message in the API request
+ * @param modelRole - The role of the model in the conversation
+ * @param chunkHandler - The function to handle incoming message chunks
+ */
 export const sendMessage = async (
   userInput: string,
   setMessages: MessageSetter,
+  endpoint: string,
+  endpointKey: string = "message",
   modelRole: string = "assistant",
   chunkHandler: typeof handleMessageChunk = handleMessageChunk
 ) => {
@@ -39,14 +62,20 @@ export const sendMessage = async (
   try {
     // Send the user's message to the backend and handle the streaming response
     const eventSource = new EventSource(
-      `${baseURL}/api/chat?message=${encodeURIComponent(userInput)}`
+      `${baseURL}/api/${endpoint}?${endpointKey}=${encodeURIComponent(userInput)}`
     );
 
+    // Keep track of the current response being built
+    let responseBuffer = "";
+
+    // Handle the incoming message chunks
     eventSource.onmessage = (event) => {
       if (event.data === "Stream completed") {
         eventSource.close();
       } else {
-        chunkHandler(event.data.reply, setMessages, modelRole);
+        const data = JSON.parse(event.data);
+        responseBuffer += data.chunk;
+        chunkHandler(responseBuffer, setMessages, modelRole);
       }
     };
 
