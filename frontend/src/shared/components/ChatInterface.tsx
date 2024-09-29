@@ -1,13 +1,17 @@
+/**
+ * Chat Interface
+ * @description A simple chat interface that allows users to chat with the assistant.
+ */
+
 // External Imports
 import React, { useState } from "react";
 
 // Internal Imports
-import { baseURL } from "../constants";
+import { Message } from "../../types";
+import { sendMessage } from "../utils/messageHandler";
 
 const ChatInterface: React.FC = () => {
-  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
-    []
-  );
+  const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState<string>("");
 
   const handleSendMessage = async () => {
@@ -20,52 +24,8 @@ const ChatInterface: React.FC = () => {
       { role: "assistant", content: "" },
     ]);
 
-    try {
-      // Send the user's message to the backend and handle the streaming response
-      const eventSource = new EventSource(
-        `${baseURL}/api/chat?message=${encodeURIComponent(userInput)}`
-      );
-
-      // Keep track of the current assistant response being built
-      let assistantContent = "";
-
-      eventSource.onmessage = (event) => {
-        if (event.data === "Stream completed") {
-          eventSource.close();
-        } else {
-          const data = JSON.parse(event.data);
-
-          // Append the chunk to the assistant's message
-          assistantContent += data.reply;
-
-          setMessages((prevMessages) => {
-            const updatedMessages = [...prevMessages];
-
-            // Find the last assistant message and update it
-            const lastAssistantMessageIndex = updatedMessages
-              .map((message) => message.role)
-              .lastIndexOf("assistant");
-
-            if (lastAssistantMessageIndex !== -1) {
-              updatedMessages[lastAssistantMessageIndex].content =
-                assistantContent;
-            }
-
-            return updatedMessages;
-          });
-        }
-      };
-
-      eventSource.onerror = (event) => {
-        console.error("Error with streaming response:", event);
-        eventSource.close();
-      };
-    } catch (error) {
-      console.error(
-        "Error occurred while sending the message or handling the stream:",
-        error
-      );
-    }
+    // Send the user's message to the backend
+    await sendMessage(userInput, setMessages, "chat");
 
     // Clear user input
     setUserInput("");
