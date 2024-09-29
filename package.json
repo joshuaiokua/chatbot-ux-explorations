@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "clean": "rm -rf node_modules package-lock.json && npm install",
     "dev": "concurrently \"npm run start --workspace backend\" \"npm run start --workspace frontend\""
   },
   "keywords": [],
