@@ -1,19 +1,27 @@
-// External Libraries
+/**
+ * Routes for Chatbot Service
+ * @module chatRoutes.ts
+ * @description This module provides routes for interacting with the chatbot service.
+ * 
+ * TODO: Implement non-streaming version of chatbot service.
+*/
+
+// External Imports
 import { Request, Response, Router } from "express";
 import { HumanMessage } from "@langchain/core/messages";
 
-// Internal Libraries
+// Internal Imports
 import { createSimpleChatbot } from "../services/llm/chatService";
 import { sleep } from "../utils";
 
-// Module constants
+// Module Constants
 const STREAM_DELAY = 25; // Milliseconds
 
 // Initialize router and chatbot
 const router = Router();
 const chatbot = createSimpleChatbot();
 
-// ROUTES
+// Chat Routes
 router.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const message = req.query.message as string;
@@ -43,7 +51,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
     for await (const { event, data } of stream) {
       if (event === "on_chat_model_stream") {
         // Send each chunk of the response
-        res.write(`data: ${JSON.stringify({ reply: data.chunk.content })}\n\n`);
+        res.write(`data: ${JSON.stringify({ chunk: data.chunk.content })}\n\n`);
         await sleep(STREAM_DELAY); // slight delay to simulate real-time chat
       }
     }
