@@ -1,4 +1,8 @@
+// External Imports
 import React, { useState } from "react";
+
+// Internal Imports
+import { baseURL } from "../constants";
 
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<{ role: string; content: string }[]>(
@@ -13,26 +17,54 @@ const ChatInterface: React.FC = () => {
     setMessages((prevMessages) => [
       ...prevMessages,
       { role: "user", content: userInput },
+      { role: "assistant", content: "" },
     ]);
 
     try {
-      const response = await fetch("http://localhost:3001/api/chat", { // TODO: Programmatically determine the correct URL
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userInput }),
-      });
+      // Send the user's message to the backend and handle the streaming response
+      const eventSource = new EventSource(
+        `${baseURL}/api/chat?message=${encodeURIComponent(userInput)}`
+      );
 
-      const data = await response.json();
+      // Keep track of the current assistant response being built
+      let assistantContent = "";
 
-      // Add assistant's response to the conversation
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { role: "assistant", content: data.reply },
-      ]);
+      eventSource.onmessage = (event) => {
+        if (event.data === "Stream completed") {
+          eventSource.close();
+        } else {
+          const data = JSON.parse(event.data);
+
+          // Append the chunk to the assistant's message
+          assistantContent += data.reply;
+
+          setMessages((prevMessages) => {
+            const updatedMessages = [...prevMessages];
+
+            // Find the last assistant message and update it
+            const lastAssistantMessageIndex = updatedMessages
+              .map((message) => message.role)
+              .lastIndexOf("assistant");
+
+            if (lastAssistantMessageIndex !== -1) {
+              updatedMessages[lastAssistantMessageIndex].content =
+                assistantContent;
+            }
+
+            return updatedMessages;
+          });
+        }
+      };
+
+      eventSource.onerror = (event) => {
+        console.error("Error with streaming response:", event);
+        eventSource.close();
+      };
     } catch (error) {
-      console.error("Error:", error);
+      console.error(
+        "Error occurred while sending the message or handling the stream:",
+        error
+      );
     }
 
     // Clear user input
@@ -52,8 +84,10 @@ const ChatInterface: React.FC = () => {
       >
         {messages.map((message, index) => (
           <div key={index} style={{ margin: "10px 0" }}>
-            <strong>{message.role === "user" ? "You" : "Assistant"}:</strong>{" "}
-            {message.content}
+            <strong style={{ display: "block" }}>
+              {message.role === "user" ? "You" : "Assistant"}
+            </strong>{" "}
+            {message.content}{" "}
           </div>
         ))}
       </div>
@@ -67,7 +101,7 @@ const ChatInterface: React.FC = () => {
       />
       <button
         onClick={handleSendMessage}
-        style={{ width: "18%", padding: "10px" }}
+        style={{ width: "20%", padding: "10px" }}
       >
         Send
       </button>
