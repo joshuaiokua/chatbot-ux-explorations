@@ -51,8 +51,8 @@ const InputBar: React.FC<InputBarProps> = ({
         sx={{
           alignSelf: "center",
           marginLeft: "10px",
-          maxHeight: "36px",
-          width: "36px",
+          aspectRatio: "1",
+          maxHeight: "75%",
           size: "small",
           backgroundColor: "#333",
           color: "#fff",

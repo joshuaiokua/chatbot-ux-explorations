@@ -51,7 +51,7 @@ const ChatInterface: React.FC = () => {
         maxWidth: "48rem", // * ChatGPT's max width
         height: "100vh", // Full viewport height
         margin: "0 auto",
-        paddingBlock: "1rem",
+        paddingBlock: "2rem",
       }}
     >
       <Typography variant="h4" component="h1" gutterBottom>
