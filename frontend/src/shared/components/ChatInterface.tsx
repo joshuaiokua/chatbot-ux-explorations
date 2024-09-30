@@ -1,10 +1,14 @@
-/**
- * Chat Interface
- * @description A simple chat interface that allows users to chat with the assistant.
- */
-
 // External Imports
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Box,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Avatar,
+} from "@mui/material";
+import SmartToyIcon from "@mui/icons-material/SmartToy"; // AI Icon
 
 // Internal Imports
 import { Message } from "../../types";
@@ -13,6 +17,7 @@ import { sendMessage } from "../utils/messageHandler";
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState<string>("");
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const handleSendMessage = async () => {
     if (!userInput.trim()) return;
@@ -31,41 +36,91 @@ const ChatInterface: React.FC = () => {
     setUserInput("");
   };
 
+  // Scroll to the bottom of the chat when a new message is added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <h1>Chat with Assistant</h1>
-      <div
-        style={{
-          minHeight: "400px",
-          border: "1px solid #ccc",
-          padding: "10px",
-          marginBottom: "10px",
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "48rem", // 768px
+        height: "100vh", // Full viewport height
+        margin: "0 auto",
+      }}
+    >
+      <Typography variant="h4" component="h1" gutterBottom>
+        beep boop
+      </Typography>
+      <Paper
+        elevation={0}
+        sx={{
+          flexGrow: 1, // Expand to fill available space
+          overflowY: "auto", // Scrollable area for messages
+          padding: "10px 10px 10px 0",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {messages.map((message, index) => (
-          <div key={index} style={{ margin: "10px 0" }}>
-            <strong style={{ display: "block" }}>
-              {message.role === "user" ? "You" : "Assistant"}
-            </strong>{" "}
-            {message.content}{" "}
-          </div>
+          <Box
+            key={index}
+            sx={{
+              display: "flex",
+              justifyContent:
+                message.role === "user" ? "flex-end" : "flex-start", // Align based on role
+              alignItems: "center", // Align avatar and message text
+              margin: "10px 0",
+            }}
+          >
+            {message.role === "assistant" && (
+              // AI Avatar for assistant messages
+              <Avatar sx={{ bgcolor: "#e5e5e5", marginRight: "0", alignSelf: "flex-start" }}>
+                <SmartToyIcon />
+              </Avatar>
+            )}
+            <Box
+              sx={{
+                backgroundColor:
+                  message.role === "user" ? "#333" : "transparent",
+                color: message.role === "user" ? "#fff" : "#333",
+                padding: ".625rem 1.25rem .625rem 1.25rem",
+                margin: "0 10px",
+                borderRadius: "15px",
+                maxWidth: message.role === "user" ? "70%" : "100%",
+                textAlign: "justify",
+                textAlignLast: message.role === "user" ? "right" : "left",
+              }}
+            >
+              <Typography variant="body1">{message.content}</Typography>
+            </Box>
+          </Box>
         ))}
-      </div>
-      <input
-        type="text"
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-        style={{ width: "80%", padding: "10px" }}
-        placeholder="Type a message..."
-      />
-      <button
-        onClick={handleSendMessage}
-        style={{ width: "20%", padding: "10px" }}
+        <div ref={messagesEndRef} />
+      </Paper>
+      <Box
+        sx={{
+          display: "flex",
+          padding: "20px",
+          borderTop: "1px solid #ccc",
+          alignItems: "center",
+        }}
       >
-        Send
-      </button>
-    </div>
+        <TextField
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+          placeholder="Type a message..."
+          variant="outlined"
+          sx={{ flexGrow: 1 }}
+        />
+        <Button variant="contained" onClick={handleSendMessage}>
+          Send
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
