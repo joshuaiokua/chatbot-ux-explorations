@@ -1,18 +1,12 @@
 // External Imports
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Avatar,
-} from "@mui/material";
-import SmartToyIcon from "@mui/icons-material/SmartToy"; // AI Icon
+import { Box, Paper, Typography } from "@mui/material";
 
 // Internal Imports
 import { Message } from "../../types";
 import { sendMessage } from "../utils/messageHandler";
+import MessageList from "./MessageList";
+import InputBar from "./InputBar";
 
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -36,6 +30,14 @@ const ChatInterface: React.FC = () => {
     setUserInput("");
   };
 
+  // Send the message when the user presses Enter without Shift
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
   // Scroll to the bottom of the chat when a new message is added
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,9 +48,10 @@ const ChatInterface: React.FC = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        maxWidth: "48rem", // 768px
+        maxWidth: "48rem", // * ChatGPT's max width
         height: "100vh", // Full viewport height
         margin: "0 auto",
+        paddingBlock: "1rem",
       }}
     >
       <Typography variant="h4" component="h1" gutterBottom>
@@ -57,69 +60,23 @@ const ChatInterface: React.FC = () => {
       <Paper
         elevation={0}
         sx={{
-          flexGrow: 1, // Expand to fill available space
-          overflowY: "auto", // Scrollable area for messages
-          padding: "10px 10px 10px 0",
           display: "flex",
+          flexGrow: 1, // Grow to fill the available space
           flexDirection: "column",
+          padding: ".625rem .625rem .625rem 0",
+          overflowY: "auto", // Scrollable area for messages
         }}
       >
-        {messages.map((message, index) => (
-          <Box
-            key={index}
-            sx={{
-              display: "flex",
-              justifyContent:
-                message.role === "user" ? "flex-end" : "flex-start", // Align based on role
-              alignItems: "center", // Align avatar and message text
-              margin: "10px 0",
-            }}
-          >
-            {message.role === "assistant" && (
-              // AI Avatar for assistant messages
-              <Avatar sx={{ bgcolor: "#e5e5e5", marginRight: "0", alignSelf: "flex-start" }}>
-                <SmartToyIcon />
-              </Avatar>
-            )}
-            <Box
-              sx={{
-                backgroundColor:
-                  message.role === "user" ? "#333" : "transparent",
-                color: message.role === "user" ? "#fff" : "#333",
-                padding: ".625rem 1.25rem .625rem 1.25rem",
-                margin: "0 10px",
-                borderRadius: "15px",
-                maxWidth: message.role === "user" ? "70%" : "100%",
-                textAlign: "justify",
-                textAlignLast: message.role === "user" ? "right" : "left",
-              }}
-            >
-              <Typography variant="body1">{message.content}</Typography>
-            </Box>
-          </Box>
-        ))}
+        <MessageList messages={messages} />
         <div ref={messagesEndRef} />
       </Paper>
-      <Box
-        sx={{
-          display: "flex",
-          padding: "20px",
-          borderTop: "1px solid #ccc",
-          alignItems: "center",
-        }}
-      >
-        <TextField
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-          placeholder="Type a message..."
-          variant="outlined"
-          sx={{ flexGrow: 1 }}
-        />
-        <Button variant="contained" onClick={handleSendMessage}>
-          Send
-        </Button>
-      </Box>
+
+      <InputBar
+        userInput={userInput}
+        setUserInput={setUserInput}
+        handleSendMessage={handleSendMessage}
+        handleKeyDown={handleKeyDown}
+      />
     </Box>
   );
 };
