@@ -1,0 +1,29 @@
+/* 
+   BianZhiDai Font Family
+
+   By Xiaoyuan Gao, notyourtypefoundry.
+   Distributed by velvetyne.fr.
+   https://www.velvetyne.fr/fonts/bianzhidai/
+
+   SCSS Version
+*/
+
+$font-path: "../../public/assets/fonts/"; // Variable for the font path
+
+@mixin bianzhidai-font($family, $filename) {
+  @font-face {
+    font-family: $family;
+    src: url("#{$font-path}#{$filename}.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@include bianzhidai-font("Bianzhidai", "bianzhidai-Base");
+@include bianzhidai-font("Bianzhidai Brush", "bianzhidai-Brush");
+@include bianzhidai-font("Bianzhidai Bubble", "bianzhidai-Bubble");
+@include bianzhidai-font("Bianzhidai Cloud", "bianzhidai-Cloud");
+@include bianzhidai-font("Bianzhidai Cube", "bianzhidai-Cube");
+@include bianzhidai-font("Bianzhidai Pearl", "bianzhidai-Pearl");
+@include bianzhidai-font("Bianzhidai Ring", "bianzhidai-Ring");
+@include bianzhidai-font("Bianzhidai Stitches", "bianzhidai-Stitches");

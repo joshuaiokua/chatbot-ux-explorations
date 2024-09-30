@@ -9,10 +9,18 @@ const Launchpad: React.FC = () => {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
+      minWidth="100vw"
       flexDirection={"column"}
     >
-      <Typography variant="h1" align="center" gutterBottom>
-        Chatbot UX
+      <Typography
+        align="left"
+        gutterBottom
+        sx={{
+          fontFamily: "Bianzhidai",
+          fontSize: "12.5vw",
+        }}
+      >
+        Chatbot<br />UX
       </Typography>
       <Button
         variant="outlined"
