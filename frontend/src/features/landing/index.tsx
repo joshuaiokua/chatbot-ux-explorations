@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 
-const Launchpad: React.FC = () => {
+const LandingPage: React.FC = () => {
   return (
     <Box
       display="flex"
@@ -16,7 +16,7 @@ const Launchpad: React.FC = () => {
         align="left"
         gutterBottom
         sx={{
-          fontFamily: "Bianzhidai",
+          fontFamily: "Bianzhidai Block RGB",
           fontSize: "12.5vw",
         }}
       >
@@ -35,4 +35,4 @@ const Launchpad: React.FC = () => {
   );
 };
 
-export default Launchpad;
+export default LandingPage;
