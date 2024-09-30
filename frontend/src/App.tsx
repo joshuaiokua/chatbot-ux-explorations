@@ -1,12 +1,12 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Launchpad from "./features/launchpad";
 import ConversationTagging from "./features/conversation-tagging";
+import LandingPage from "./features/landing";
 
 const router = createBrowserRouter([
   {
-    path: "/", // Landing page
-    element: <Launchpad />,
+    path: "/",
+    element: <LandingPage />,
   },
   {
     path: "/conversation-tagging",

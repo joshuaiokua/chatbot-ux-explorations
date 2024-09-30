@@ -9,11 +9,8 @@ import {
 import { ChatGroq } from "@langchain/groq";
 
 // Internal imports
-import {
-  SimpleStateAnnotation,
-  SimpleStateType,
-  callModel,
-} from "./common/";
+import { callModel } from "./common/";
+import { SimpleStateAnnotation, SimpleStateType, SimpleCompiledStateGraph } from "./common/types";
 
 /**
  * Creates a simple chatbot graph with a single node that calls a language model.
@@ -23,6 +20,7 @@ import {
  *
  * @param {string} modelName - The name of the language model to be used.
  * @param {number} modelTemperature - The temperature of the language model.
+ * @param {boolean} streamMessages - Whether to stream messages to the model.
  * @param {boolean} useCheckpointer - Whether to use a checkpointer to save the model's state.
  *
  * @returns {CompiledStateGraph<SimpleStateType> } - The compiled chatbot graph.
@@ -31,16 +29,14 @@ import {
 export const createSimpleChatbot = (
   modelName: string = "llama-3.1-70b-versatile",
   modelTemperature: number = 0,
+  streamMessages: boolean = true,
   useCheckpointer: boolean = true
-): CompiledStateGraph<
-  SimpleStateType,
-  Partial<SimpleStateType>,
-  typeof START | "model" // Required node names
-> => {
+): SimpleCompiledStateGraph => {
   // Initialize chat model
   const model = new ChatGroq({
     model: modelName,
     temperature: modelTemperature,
+    streaming: streamMessages,
   });
 
   // Construct graph

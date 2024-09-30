@@ -1,10 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom/client"; // Correct import for React 18
+import ReactDOM from "react-dom/client";
 import App from "./App";
 
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "./theme";
+
+// Styling Imports
+import theme from "./styles/theme";
+import './styles/main.scss'; 
 
 // Create React root, ensuring that root element is present
 ReactDOM.createRoot(document.getElementById("root")!).render(

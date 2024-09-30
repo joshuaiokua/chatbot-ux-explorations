@@ -1,0 +1,19 @@
+@mixin load-font($family, $font-folder, $filename, $alternates: (), $font-path: "/public/assets/fonts/") {
+    @debug "Primary font path: #{$font-path}#{$font-folder}/#{$filename}.woff";
+    @font-face {
+        font-family: $family;
+        src: url("#{$font-path}#{$font-folder}/#{$filename}.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @each $alt, $file in $alternates {
+        @debug "Alternate font path: #{$font-path}#{$font-folder}/#{$file}.woff";
+        @font-face {
+            font-family: $alt;
+            src: url("#{$font-path}#{$font-folder}/#{$file}.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+    }
+}

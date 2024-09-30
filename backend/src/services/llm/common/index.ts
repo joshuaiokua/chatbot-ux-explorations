@@ -3,19 +3,14 @@
  *
  * @description This module holds all common functionality and utilities used by the various LLM services.
  */
-import { Annotation } from "@langchain/langgraph";
-import { BaseMessage } from "@langchain/core/messages";
+
+// External imports
+import { Annotation, CompiledStateGraph } from "@langchain/langgraph";
+import { AIMessageChunk, BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { BaseChatModel } from "@langchain/core/language_models/chat_models";
 
-// Define a simple State annotation
-export const SimpleStateAnnotation = Annotation.Root({
-  messages: Annotation<BaseMessage[]>({
-    reducer: (x, y) => x.concat(y),
-  }),
-});
-
-// Define a simple State and Node type
-export type SimpleStateType = typeof SimpleStateAnnotation.State;
+// Internal imports
+import { SimpleStateType, SimpleCompiledStateGraph } from "./types";
 
 /**
  * Calls the provided model given the current graph state, invoking it with the state's messages
@@ -42,6 +37,28 @@ export const callModel = async (
     console.error("Model invocation failed:", error);
     throw new Error("Failed to invoke model");
   }
+};
+
+/**
+ * Get the response from a chatbot given a message and a chatbot agent.
+ * 
+ * @param {string} message - The message to send to the chatbot.
+ * @param {SimpleCompiledStateGraph} agent - The chatbot agent to respond to the message.
+ * @param {object} config - The configuration object to pass to the agent. Defaults to { configurable: { thread_id: "123" } }.
+ */
+export const getChatResponse = async (
+  message: string,
+  agent: SimpleCompiledStateGraph,
+  config: {} = { configurable: { thread_id: "123" } }
+): Promise<string | undefined> => {
+  // Invoke the agent with the provided message
+  const conversation = await agent.invoke(
+    { messages: [new HumanMessage(message)] },
+    config
+  );
+
+  // Return last message in the conversation (i.e. the agent's response)
+  return conversation.messages.at(-1)?.content;
 };
 
 // List of supported providers for error messages
@@ -82,7 +99,7 @@ export const listModels = async (
 
   // If sparse is true, return only the model IDs (names), otherwise return full model objects
   if (sparse) {
-    return models.map((model: any) => model.id);
+    return models.map((model) => model.id);
   }
 
   return models;
