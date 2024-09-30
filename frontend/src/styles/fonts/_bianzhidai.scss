@@ -1,0 +1,77 @@
+@import "./font-utils";
+$FF: "bianzhidai";
+
+@include load-font(
+    "Bianzhidai",
+    $FF,
+    "Base",
+    (
+        "Bianzhidai NBG": "Base-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Brush",
+    $FF,
+    "Brush",
+    (
+        "Bianzhidai Brush NBG": "Brush-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Bubble",
+    $FF,
+    "Bubble",
+    (
+        "Bianzhidai Bubble NBG": "Bubble-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Cloud",
+    $FF,
+    "Cloud",
+    (
+        "Bianzhidai Cloud NBG": "Cloud-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Cube",
+    $FF,
+    "Cube",
+    (
+        "Bianzhidai Cube NBG": "Cube-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Pearl",
+    $FF,
+    "Pearl",
+    (
+        "Bianzhidai Pearl NBG": "Pearl-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Ring",
+    $FF,
+    "Ring",
+    (
+        "Bianzhidai Ring NBG": "Ring-NBG"
+    )
+);
+@include load-font(
+    "Bianzhidai Stitches",
+    $FF,
+    "Stitches",
+    (
+        "Bianzhidai Stitches NBG": "Stitches-NBG"
+    )
+);
+
+@include load-font(
+    "Bianzhidai Block",
+    $FF,
+    "COLR-GRAY",
+    (
+        "Bianzhidai Block Grid": "COLR-GRID",
+        "Bianzhidai Block RGB": "COLR-RGB"
+    )
+);
