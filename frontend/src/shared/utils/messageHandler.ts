@@ -22,8 +22,6 @@ export const handleMessageChunk = async (
   setMessages: MessageSetter,
   modelRole: string
 ) => {
-    
-  // Append the chunk to the last AI message
   setMessages((prevMessages) => {
     const updatedMessages = [...prevMessages];
     const lastAIMessageIndex = updatedMessages
@@ -60,7 +58,7 @@ export const sendMessage = async (
   if (!userInput.trim()) return;
 
   try {
-    // Send the user's message to the backend and handle the streaming response
+    // Send the message to the backend
     const eventSource = new EventSource(
       `${baseURL}/api/${endpoint}?${endpointKey}=${encodeURIComponent(userInput)}`
     );
