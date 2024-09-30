@@ -13,23 +13,33 @@ const LandingPage: React.FC = () => {
       flexDirection={"column"}
     >
       <Typography
-        align="left"
+        align="center"
         gutterBottom
         sx={{
           fontFamily: "Bianzhidai Block RGB",
-          fontSize: "12.5vw",
+          fontSize: "10vw",
         }}
       >
-        Chatbot<br />UX
+        Chatbot UX
       </Typography>
       <Button
-        variant="outlined"
-        color="primary"
+        variant="outlined" 
         component={Link}
         to="/conversation-tagging"
-        sx={{ borderRadius: 0 }}
+        sx={{
+          border: "0.5px solid #F3D0D7",
+          borderRadius: "25px",
+          color: "#333",
+          padding: "12px 28px",
+          textTransform: "lowercase",
+          "&:hover": {
+            color: "#fff",
+            backgroundColor: "#F3D0D7",
+            border: "0.5px solid #F3D0D7",
+          },
+        }}
       >
-        conversation tagging
+        🤖 Conversation Tagging 🤖
       </Button>
     </Box>
   );
