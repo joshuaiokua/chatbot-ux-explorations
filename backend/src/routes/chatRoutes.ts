@@ -1,6 +1,5 @@
 /**
  * Routes for Chatbot Service
- * @module chatRoutes.ts
  * @description This module provides routes for interacting with the chatbot service.
  * 
  * TODO: Implement non-streaming version of chatbot service.
