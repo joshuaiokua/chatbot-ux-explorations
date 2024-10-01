@@ -18,7 +18,7 @@ Built with **TypeScript**, this repository leverages the **LangChain** software 
 
 ## Getting Started
 >
-> **NOTE:** Eventually, these explorations will be *explorable* on a website, but for now, you can run them locally. Please reference the env.example file for the necessary environment variables.
+> **NOTE:** Eventually, these explorations will be *explorable* on a website, but for now, you can run them locally. Please reference the `env.example` file for the necessary environment variables.
 
 ### Local Development
 
