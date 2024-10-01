@@ -1,18 +1,24 @@
 # chatbot-ux-explorations
 
-**Chatbot UX Explorations** is a collection of prototypes and experiments designed to explore and enhance chatbot user experiences (UX). These explorations span from practical improvements to current chatbot interfaces and interactions—such as making conversations more intuitive and accessible—to playful, imaginative ideas that push the boundaries of what chatbot interactions could become.
+This version tracks the progress with incremental version numbering, reflecting completed, in-progress, and upcoming tasks with relevant emojis.
+**Chatbot UX Explorations** is a collection of prototypes and experiments designed to explore and enhance chatbot user experiences (UX). These explorations span from practical improvements to current chatbot interfaces and interactions—such as making conversations more intuitive and accessible—to more playful ideas that re-imagine how we might use chatbots.
 
-Built with **TypeScript**, this repo primarily leverages **LangChain**'s family of libraries, including LangChain, LangGraph, and LangSmith, to bring these concepts to life.
+Built with **TypeScript**, this repository leverages the **LangChain** software suite to bring these concepts to life.
 
 ## Table of Contents
 
 - [**Getting Started**](#getting-started)
+- [**Roadmap**](#roadmap)
 - [**Explorations**](#explorations)
-  - [Conversation Tagging](#conversation-tagging)
+  - [Conversational Bookmarking and Annotation](#conversational-bookmarking-and-annotation)
+    - [Favoriting Conversations and Responses](#favoriting-conversations-and-responses)
+    - [Conversational Tagging](#conversational-tagging)
+    - [Intra-Conversation RAG](#intra-conversation-rag)
+  - [Stepwise Conversational AI](#stepwise-conversational-ai)
 
 ## Getting Started
 >
-> **NOTE:** Eventually these explorations will be hosted and *explore-able* on a website, but for now, you can run them locally.
+> **NOTE:** Eventually, these explorations will be *explorable* on a website, but for now, you can run them locally. Please reference the env.example file for the necessary environment variables.
 
 ### Local Development
 
@@ -30,10 +36,38 @@ Built with **TypeScript**, this repo primarily leverages **LangChain**'s family 
    npm run dev
    ```
 
+## Roadmap
+
+| Phase            | Task                                       | Status        |
+|------------------|--------------------------------------------|---------------|
+| **1.0**          | Initial Project Setup                      | ✅ Completed   |
+| **2.0**          | Conversational Bookmarking and Annotation (Favoriting) | 🔄 In Progress |
+| **2.5**          | Conversational Bookmarking and Annotation (Tagging) | 🔜 Upcoming    |
+| **2.75**          | Conversational Bookmarking and Annotation (Intra-Conversation RAG) | 📝 Planned    |
+| **3.0**          | Stepwise Conversational AI Explorations | 📝 Planned    |
+
 ## Explorations
 
-See `docs` for write-ups and fuller information on each exploration.
+Check the `docs` folder for detailed descriptions and technical information on each exploration and their related themes.
 
-### Conversation Tagging
+### Conversational Bookmarking and Annotation
 
-This experiment focuses on enhancing user interactions with chatbots by introducing the ability to tag and organize key moments within conversations. By prototyping features that allow users to easily reference important points—whether for research, follow-up tasks, or personalized use cases—it demonstrates how this seemingly small addition can significantly increase user control over their chat history. Drawing inspiration from note-taking apps and task managers, this exploration ultimately seeks to improve the overall conversational experience by making interactions more structured, intuitive, and user-friendly.
+Drawing inspiration from notetaking and journaling apps, this theme examines how UIs could better allow users to organize and manage conversations. It includes features that let users mark, categorize, and easily revisit key moments in chat histories, making conversations more structured and intuitive.
+
+#### Favoriting Conversations and Responses
+
+This feature lets users mark specific responses or entire conversations as favorites, making it easier to revisit important sections during a session.
+
+#### Conversational Tagging
+
+This future feature will allow users to assign custom tags to responses, providing more control over how they organize and retrieve conversations.
+
+#### Intra-Conversation RAG
+
+This feature will let users quickly retrieve responses from earlier in the conversation that have fallen out of the AI’s context window, making it easier to reference past information.
+
+#### Stepwise Conversational AI
+
+This theme focuses on creating guided, step-by-step chatbot interactions. Inspired by educational modules, onboarding flows, and presentations, it helps users navigate complex topics or processes in manageable steps, with the option to ask follow-up questions and review previous steps.
+
+- **Exploration**: Future projects in this theme will implement stepwise conversational design to guide users through processes, learning modules, or structured workflows.
