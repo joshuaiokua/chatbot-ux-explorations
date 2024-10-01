@@ -10,11 +10,11 @@ Built with **TypeScript**, this repository leverages the **LangChain** software 
 - [**Getting Started**](#getting-started)
 - [**Roadmap**](#roadmap)
 - [**Explorations**](#explorations)
-  - [Conversational Bookmarking and Annotation](#conversational-bookmarking-and-annotation)
-    - [Favoriting Conversations and Responses](#favoriting-conversations-and-responses)
-    - [Conversational Tagging](#conversational-tagging)
-    - [Intra-Conversation RAG](#intra-conversation-rag)
-  - [Stepwise Conversational AI](#stepwise-conversational-ai)
+  - [*Conversational Bookmarking and Annotation*](#conversational-bookmarking-and-annotation)
+    - Favoriting Conversations and Responses
+    - Conversational Tagging
+    - Intra-Conversation RAG
+  - [*Stepwise Conversational AI*](#stepwise-conversational-ai)
 
 ## Getting Started
 >
@@ -54,17 +54,11 @@ Check the `docs` folder for detailed descriptions and technical information on e
 
 Drawing inspiration from notetaking and journaling apps, this theme examines how UIs could better allow users to organize and manage conversations. It includes features that let users mark, categorize, and easily revisit key moments in chat histories, making conversations more structured and intuitive.
 
-#### Favoriting Conversations and Responses
+- **Favoriting Conversations and Responses**: This feature explores letting users mark specific responses or entire conversations as favorites, making it easier to revisit important sections during a session.
 
-This feature lets users mark specific responses or entire conversations as favorites, making it easier to revisit important sections during a session.
+- **Conversational Tagging**: This feature explores allowing users to assign custom tags to responses, providing more control over how they organize and retrieve conversations.
 
-#### Conversational Tagging
-
-This future feature will allow users to assign custom tags to responses, providing more control over how they organize and retrieve conversations.
-
-#### Intra-Conversation RAG
-
-This feature will let users quickly retrieve responses from earlier in the conversation that have fallen out of the AI’s context window, making it easier to reference past information.
+- **Intra-Conversation RAG**: This feature explores allowing users quickly retrieve responses from earlier in the conversation that have fallen out of the AI’s context window, making it easier to reference past information.
 
 #### Stepwise Conversational AI
 
