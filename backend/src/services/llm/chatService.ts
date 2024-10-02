@@ -1,16 +1,14 @@
 // External imports
 import { MemorySaver } from "@langchain/langgraph";
-import {
-  END,
-  START,
-  StateGraph,
-  CompiledStateGraph,
-} from "@langchain/langgraph";
+import { END, START, StateGraph } from "@langchain/langgraph";
 import { ChatGroq } from "@langchain/groq";
 
 // Internal imports
 import { callModel } from "./common/";
-import { SimpleStateAnnotation, SimpleStateType, SimpleCompiledStateGraph } from "./common/types";
+import {
+  SimpleStateAnnotation,
+  SimpleCompiledStateGraph,
+} from "./common/types";
 
 /**
  * Creates a simple chatbot graph with a single node that calls a language model.
