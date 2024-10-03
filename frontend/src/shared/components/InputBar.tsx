@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Box, TextField, IconButton } from "@mui/material";
 import { IconArrowUp } from "@tabler/icons-react";
 
@@ -15,6 +16,9 @@ const InputBar: React.FC<InputBarProps> = ({
   handleSendMessage,
   handleKeyDown,
 }) => {
+  const theme = useTheme();
+  const colors = theme.palette;
+
   return (
     <Box
       sx={{
@@ -23,7 +27,7 @@ const InputBar: React.FC<InputBarProps> = ({
         alignItems: "flex-end",
         padding: "5px 10px 5px",
         borderRadius: "26px", // Emulating ChatGPT
-        backgroundColor: "#f5f5f5",
+        backgroundColor: colors.lightGray.main,
         position: "relative", // Enable absolute positioning for the IconButton
       }}
     >
@@ -54,11 +58,11 @@ const InputBar: React.FC<InputBarProps> = ({
           right: "10px",
           bottom: "10px",
           size: "30px", // * 75% of the parent's height; can't use 75% directly
-          backgroundColor: "#333",
-          color: "#fff",
+          backgroundColor: colors.charcoal.main,
+          color: "white",
           borderRadius: "50%",
           "&:hover": {
-            backgroundColor: "#222",
+            backgroundColor: colors.charcoal.light,
           },
         }}
       >

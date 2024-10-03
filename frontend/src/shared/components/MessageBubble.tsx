@@ -1,6 +1,7 @@
 import React from "react";
 import Markdown from "react-markdown";
-import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 interface MessageBubbleProps {
   content: string;
@@ -8,6 +9,9 @@ interface MessageBubbleProps {
 }
 
 const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser }) => {
+  const theme = useTheme();
+  const colors = theme.palette;
+
   return (
     <Box
       sx={{
@@ -17,8 +21,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser }) => {
         borderRadius: "1.5rem",
         textAlign: "justify",
         textAlignLast: isUser ? "right" : "left",
-        color: isUser ? "#fff" : "#333",
-        backgroundColor: isUser ? "#333" : "transparent",
+        color: isUser ? colors.background.default : colors.charcoal.main,
+        backgroundColor: isUser ? colors.charcoal.main : "transparent",
         "& > *:first-of-type": {
           marginTop: 0, // Remove top margin for the first element
           paddingTop: 0, // Remove top padding for the first element

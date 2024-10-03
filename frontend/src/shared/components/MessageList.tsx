@@ -1,5 +1,6 @@
 // External Imports
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Box, Avatar } from "@mui/material";
 import { IconRobot } from "@tabler/icons-react";
 
@@ -12,6 +13,9 @@ interface MessageListProps {
 }
 
 const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+  const theme = useTheme();
+  const colors = theme.palette;
+
   return (
     <Box
       sx={{
@@ -36,12 +40,12 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
           {message.role === "assistant" && (
             <Avatar
               sx={{
-                bgcolor: "#e5e5e5",
+                bgcolor: colors.gray.main,
                 marginRight: "0",
                 alignSelf: "flex-start",
               }}
             >
-              <IconRobot color="#333" />
+              <IconRobot color={colors.charcoal.main} />
             </Avatar>
           )}
           <MessageBubble

@@ -1,8 +1,12 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 
 const LandingPage: React.FC = () => {
+  const theme = useTheme();
+  const colors = theme.palette;
+
   return (
     <Box
       display="flex"
@@ -29,7 +33,7 @@ const LandingPage: React.FC = () => {
         sx={{
           border: "0.5px solid #F3D0D7",
           borderRadius: "25px",
-          color: "#333",
+          color: colors.charcoal.main,
           padding: "12px 28px",
           textTransform: "lowercase",
           "&:hover": {
