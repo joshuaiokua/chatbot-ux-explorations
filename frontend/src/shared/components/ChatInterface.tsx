@@ -11,6 +11,8 @@ import InputBar from "./InputBar";
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState<string>("");
+  const [streamCompletedState, setStreamCompleteState] =
+    useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const handleSendMessage = async () => {
@@ -24,7 +26,7 @@ const ChatInterface: React.FC = () => {
     ]);
 
     // Send the user's message to the backend
-    await sendMessage(userInput, setMessages, "chat");
+    await sendMessage(userInput, setMessages, setStreamCompleteState, "chat");
 
     // Clear user input
     setUserInput("");
@@ -48,7 +50,7 @@ const ChatInterface: React.FC = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        maxWidth: "48rem", // Emulating ChatGPT 
+        maxWidth: "48rem", // Emulating ChatGPT
         width: "100%", // Full width
         height: "100%", // Full height
         margin: "0 auto",
@@ -66,7 +68,7 @@ const ChatInterface: React.FC = () => {
           overflowY: "auto", // Scrollable area for messages
         }}
       >
-        <MessageList messages={messages} />
+        <MessageList messages={messages} streamCompleted={streamCompletedState} />
         <div ref={messagesEndRef} />
       </Paper>
 

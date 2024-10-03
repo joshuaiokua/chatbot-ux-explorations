@@ -2,13 +2,19 @@ import React from "react";
 import Markdown from "react-markdown";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { IconHeart } from "@tabler/icons-react";
 
 interface MessageBubbleProps {
   content: string;
   isUser: boolean;
+  showFooterIcons?: boolean;
 }
 
-const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser }) => {
+const MessageBubble: React.FC<MessageBubbleProps> = ({
+  content,
+  isUser,
+  showFooterIcons,
+}) => {
   const theme = useTheme();
   const colors = theme.palette;
 
@@ -34,6 +40,18 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser }) => {
       }}
     >
       {isUser ? content : <Markdown>{content}</Markdown>}
+
+      {showFooterIcons && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: ".25rem",
+          }}
+        >
+          <IconHeart />
+        </Box>
+      )}
     </Box>
   );
 };

@@ -2,7 +2,7 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Avatar } from "@mui/material";
-import { IconRobot } from "@tabler/icons-react";
+import { IconRobot, IconHeart } from "@tabler/icons-react";
 
 // Internal Imports
 import MessageBubble from "./MessageBubble";
@@ -10,9 +10,13 @@ import { Message } from "../../types";
 
 interface MessageListProps {
   messages: Message[];
+  streamCompleted: boolean;
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+const MessageList: React.FC<MessageListProps> = ({
+  messages,
+  streamCompleted,
+}) => {
   const theme = useTheme();
   const colors = theme.palette;
 
@@ -51,6 +55,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
           <MessageBubble
             content={message.content}
             isUser={message.role === "user"}
+            showFooterIcons={streamCompleted && index === messages.length - 1}
           />
         </Box>
       ))}

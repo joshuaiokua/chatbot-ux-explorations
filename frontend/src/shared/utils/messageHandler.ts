@@ -6,7 +6,7 @@
  */
 
 import { baseURL } from "../constants";
-import { MessageSetter } from "../../types";
+import { MessageSetter, BoolStateSetter } from "../../types";
 
 /**
  * Handle a chunk of a message response.
@@ -50,6 +50,7 @@ export const handleMessageChunk = async (
 export const sendMessage = async (
   userInput: string,
   setMessages: MessageSetter,
+  setStreamState: BoolStateSetter,
   endpoint: string,
   endpointKey: string = "message",
   modelRole: string = "assistant",
@@ -64,12 +65,14 @@ export const sendMessage = async (
     );
 
     // Keep track of the current response being built
+    setStreamState(false);
     let responseBuffer = "";
 
     // Handle the incoming message chunks
     eventSource.onmessage = (event) => {
       if (event.data === "Stream completed") {
         eventSource.close();
+        setStreamState(true);
       } else {
         const data = JSON.parse(event.data);
         responseBuffer += data.chunk;

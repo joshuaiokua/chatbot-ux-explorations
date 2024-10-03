@@ -10,3 +10,4 @@ export type Message = {
   content: string;
 };
 export type MessageSetter = React.Dispatch<React.SetStateAction<Message[]>>;
+export type BoolStateSetter = React.Dispatch<React.SetStateAction<boolean>>;
