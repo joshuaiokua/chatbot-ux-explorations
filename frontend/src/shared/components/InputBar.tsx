@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, TextField, IconButton } from "@mui/material";
-import ArrowUpwardRounded from "@mui/icons-material/ArrowUpwardRounded";
+import { IconArrowUp } from "@tabler/icons-react";
 
 interface InputBarProps {
   userInput: string;
@@ -22,8 +22,9 @@ const InputBar: React.FC<InputBarProps> = ({
         maxWidth: "740px",
         alignItems: "flex-end",
         padding: "5px 10px 5px",
-        borderRadius: "50px",
+        borderRadius: "26px", // Emulating ChatGPT
         backgroundColor: "#f5f5f5",
+        position: "relative", // Enable absolute positioning for the IconButton
       }}
     >
       <TextField
@@ -49,11 +50,11 @@ const InputBar: React.FC<InputBarProps> = ({
       <IconButton
         onClick={handleSendMessage}
         sx={{
-          alignSelf: "center",
-          marginLeft: "10px",
-          aspectRatio: "1",
-          maxHeight: "75%",
-          size: "small",
+          position: "absolute",
+          right: "10px",
+          bottom: "10px",
+          height: "30px", // * 75% of the TextField height; can't use 75% directly
+          width: "30px",
           backgroundColor: "#333",
           color: "#fff",
           borderRadius: "50%",
@@ -62,7 +63,7 @@ const InputBar: React.FC<InputBarProps> = ({
           },
         }}
       >
-        <ArrowUpwardRounded fontSize="small" />
+        <IconArrowUp stroke="3" height={"16px"} />
       </IconButton>
     </Box>
   );
