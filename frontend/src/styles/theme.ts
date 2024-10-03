@@ -1,3 +1,8 @@
+/**
+ * Application Theme
+ * TODO: Programmatic ability to add custom named colors.
+ */
+
 import { createTheme } from "@mui/material/styles";
 
 // Augment the palette to include an ochre color
