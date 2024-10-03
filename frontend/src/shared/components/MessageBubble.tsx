@@ -1,4 +1,5 @@
 import React from "react";
+import Markdown from "react-markdown";
 import { Box, Typography } from "@mui/material";
 
 interface MessageBubbleProps {
@@ -18,9 +19,17 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser }) => {
         textAlignLast: isUser ? "right" : "left",
         color: isUser ? "#fff" : "#333",
         backgroundColor: isUser ? "#333" : "transparent",
+        "& > *:first-of-type": {
+          marginTop: 0, // Remove top margin for the first element
+          paddingTop: 0, // Remove top padding for the first element
+        },
+        "& > *:last-of-type": {
+          marginBottom: 0, // Remove bottom margin for the last element
+          paddingBottom: 0, // Remove bottom padding for the last element
+        },
       }}
     >
-      <Typography variant="body1">{content}</Typography>
+      {isUser ? content : <Markdown>{content}</Markdown>}
     </Box>
   );
 };
