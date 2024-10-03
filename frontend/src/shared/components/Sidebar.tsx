@@ -2,12 +2,10 @@ import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -137,7 +135,6 @@ export default function Sidebar() {
             )}
           </IconButton>
         </DrawerHeader>
-        <Divider />
         <List
           sx={{
             paddingLeft: "1rem",
@@ -151,7 +148,6 @@ export default function Sidebar() {
             )
           )}
         </List>
-        <Divider />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
