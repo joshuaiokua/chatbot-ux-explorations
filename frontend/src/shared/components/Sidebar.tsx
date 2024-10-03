@@ -16,10 +16,10 @@ import { IconLayoutSidebar } from "@tabler/icons-react";
 
 const drawerWidth = 260; // Emulating ChatGPT
 
-const CustomIconSidebar = styled(IconLayoutSidebar)({
-  strokeWidth: "2.5",
-  color: "#333",
-});
+const CustomIconSidebar = styled(IconLayoutSidebar)(({ theme }) => ({
+    stroke: "2.5",
+    color: theme.palette.charcoal.main,
+}));
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -47,8 +47,8 @@ interface AppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
-  color: "#333",
-  background: "primary",
+  color: theme.palette.charcoal.main,
+  background: theme.palette.secondary.main,
   boxShadow: "none",
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
@@ -86,7 +86,6 @@ export default function Sidebar() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton

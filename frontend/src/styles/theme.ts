@@ -1,5 +1,16 @@
 import { createTheme } from "@mui/material/styles";
 
+// Augment the palette to include an ochre color
+declare module '@mui/material/styles' {
+  interface Palette {
+    charcoal: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    charcoal?: PaletteOptions['primary'];
+  }
+}
+
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -15,6 +26,9 @@ const theme = createTheme({
     },
     background: {
       default: "#fff",
+    },
+    charcoal: {
+      main: "#333333",
     },
   },
   typography: {
@@ -38,5 +52,7 @@ const theme = createTheme({
     },
   },
 });
+
+
 
 export default theme;
