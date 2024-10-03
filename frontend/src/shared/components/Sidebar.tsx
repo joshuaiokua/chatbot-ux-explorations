@@ -17,8 +17,8 @@ import { IconLayoutSidebar } from "@tabler/icons-react";
 const drawerWidth = 260; // Emulating ChatGPT
 
 const CustomIconSidebar = styled(IconLayoutSidebar)(({ theme }) => ({
-    stroke: "2.5",
-    color: theme.palette.charcoal.main,
+  stroke: "2.5",
+  color: theme.palette.charcoal.main,
 }));
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -48,7 +48,7 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
   color: theme.palette.charcoal.main,
-  background: theme.palette.secondary.main,
+  background: "white",
   boxShadow: "none",
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
@@ -87,7 +87,12 @@ export default function Sidebar() {
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar
+          sx={{
+            alignItems: "center",
+            padding: "12px", // Emulating ChatGPT
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -100,7 +105,12 @@ export default function Sidebar() {
           >
             <CustomIconSidebar />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            alignContent={"center"}
+          >
             beep boop
           </Typography>
         </Toolbar>

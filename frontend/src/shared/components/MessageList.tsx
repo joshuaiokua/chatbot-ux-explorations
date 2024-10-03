@@ -16,10 +16,11 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
     <Box
       sx={{
         display: "flex",
-        flexGrow: 1, // Grow to fill the available space
+        flexGrow: 1,
         flexDirection: "column",
-        padding: ".625rem",
-        overflowY: "auto", // Scrollable area for messages
+        padding: "2.625rem .625rem .625rem .625rem",
+        overflowY: "auto",
+        boxSizing: "border-box", // Make sure padding is part of the box model
       }}
     >
       {messages.map((message, index) => (
