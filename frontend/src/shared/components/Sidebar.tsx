@@ -9,11 +9,10 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+
+import { IconLayoutSidebar } from '@tabler/icons-react';
 
 const drawerWidth = 240;
 
@@ -95,7 +94,7 @@ export default function Sidebar() {
               ...(open && { display: "none" }),
             }}
           >
-            <MenuIcon />
+            <IconLayoutSidebar />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             beep boop
@@ -118,9 +117,9 @@ export default function Sidebar() {
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <MenuIcon />
+              <IconLayoutSidebar />
             ) : (
-              <MenuIcon />
+              <IconLayoutSidebar />
             )}
           </IconButton>
         </DrawerHeader>

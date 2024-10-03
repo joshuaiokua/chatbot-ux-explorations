@@ -1,7 +1,7 @@
 // External Imports
 import React from "react";
 import { Box, Avatar } from "@mui/material";
-import SmartToyIcon from "@mui/icons-material/SmartToy";
+import { IconRobot } from "@tabler/icons-react";
 
 // Internal Imports
 import MessageBubble from "./MessageBubble";
@@ -40,7 +40,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
                 alignSelf: "flex-start",
               }}
             >
-              <SmartToyIcon />
+              <IconRobot color="#333" />
             </Avatar>
           )}
           <MessageBubble

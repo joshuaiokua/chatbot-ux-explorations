@@ -1,6 +1,6 @@
 // External Imports
 import React, { useState, useEffect, useRef } from "react";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 
 // Internal Imports
 import { Message } from "../../types";
