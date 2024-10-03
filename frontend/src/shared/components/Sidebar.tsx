@@ -12,13 +12,13 @@ import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
-import { IconLayoutSidebar } from '@tabler/icons-react';
+import { IconLayoutSidebar } from "@tabler/icons-react";
 
 const drawerWidth = 260; // Emulating ChatGPT
 
 const CustomIconSidebar = styled(IconLayoutSidebar)({
-    stroke:"2.5",
-    color: "#333",
+  strokeWidth: "2.5",
+  color: "#333",
 });
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -130,9 +130,9 @@ export default function Sidebar() {
         </DrawerHeader>
         <Divider />
         <List
-        sx={{
+          sx={{
             paddingLeft: "1rem",
-        }}
+          }}
         >
           {["Conversation 1", "Conversation 2", "Conversation 3"].map(
             (text, index) => (

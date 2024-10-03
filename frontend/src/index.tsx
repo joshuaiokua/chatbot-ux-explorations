@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 // Styling Imports
 import theme from "./styles/theme";
-import './styles/main.scss'; 
+import "./styles/main.scss";
 
 // Create React root, ensuring that root element is present
 ReactDOM.createRoot(document.getElementById("root")!).render(
