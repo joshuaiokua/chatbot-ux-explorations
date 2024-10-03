@@ -48,11 +48,12 @@ const ChatInterface: React.FC = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minWidth: "48rem", // ! Need to change.
-        maxWidth: "48rem", // * ChatGPT's max width
-        height: "100vh", // Full viewport height
+        maxWidth: "48rem", // Emulating ChatGPT 
+        width: "100%", // Full width
+        height: "100%", // Full height
         margin: "0 auto",
         paddingBlock: "2rem",
+        backgroundColor: "transparent",
       }}
     >
       <Paper
@@ -61,7 +62,7 @@ const ChatInterface: React.FC = () => {
           display: "flex",
           flexGrow: 1, // Grow to fill the available space
           flexDirection: "column",
-          padding: ".625rem .625rem .625rem 0",
+          padding: ".625rem .625rem 0 0",
           overflowY: "auto", // Scrollable area for messages
         }}
       >
