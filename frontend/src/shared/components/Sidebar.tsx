@@ -14,13 +14,18 @@ import ListItemText from "@mui/material/ListItemText";
 
 import { IconLayoutSidebar } from '@tabler/icons-react';
 
-const drawerWidth = 240;
+const drawerWidth = 260; // Emulating ChatGPT
+
+const CustomIconSidebar = styled(IconLayoutSidebar)({
+    stroke:"2.5",
+    color: "#333",
+});
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
+  padding: theme.spacing(3), // * multiplies the base spacing value by 3
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -31,7 +36,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginLeft: `-${drawerWidth}px`, // * Ensure that page content is moved when sidebar is open
   }),
 }));
 
@@ -94,7 +99,7 @@ export default function Sidebar() {
               ...(open && { display: "none" }),
             }}
           >
-            <IconLayoutSidebar />
+            <CustomIconSidebar />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             beep boop
@@ -117,9 +122,9 @@ export default function Sidebar() {
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <IconLayoutSidebar />
+              <CustomIconSidebar />
             ) : (
-              <IconLayoutSidebar />
+              <CustomIconSidebar />
             )}
           </IconButton>
         </DrawerHeader>
