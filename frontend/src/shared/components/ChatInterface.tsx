@@ -48,15 +48,13 @@ const ChatInterface: React.FC = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        minWidth: "48rem", // ! Need to change.
         maxWidth: "48rem", // * ChatGPT's max width
         height: "100vh", // Full viewport height
         margin: "0 auto",
         paddingBlock: "2rem",
       }}
     >
-      <Typography variant="h4" component="h1" gutterBottom>
-        beep boop
-      </Typography>
       <Paper
         elevation={0}
         sx={{
