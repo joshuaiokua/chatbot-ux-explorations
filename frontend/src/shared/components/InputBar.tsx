@@ -53,8 +53,7 @@ const InputBar: React.FC<InputBarProps> = ({
           position: "absolute",
           right: "10px",
           bottom: "10px",
-          height: "30px", // * 75% of the TextField height; can't use 75% directly
-          width: "30px",
+          size: "30px", // * 75% of the parent's height; can't use 75% directly
           backgroundColor: "#333",
           color: "#fff",
           borderRadius: "50%",
@@ -63,7 +62,7 @@ const InputBar: React.FC<InputBarProps> = ({
           },
         }}
       >
-        <IconArrowUp stroke="3" height={"16px"} />
+        <IconArrowUp stroke="2.5" size={"16px"} />
       </IconButton>
     </Box>
   );
