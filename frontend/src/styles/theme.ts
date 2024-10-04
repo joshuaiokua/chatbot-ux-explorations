@@ -1,22 +1,19 @@
 /**
  * Application Theme
- * TODO: Programmatic ability to add custom named colors.
  */
 
 import { createTheme } from "@mui/material/styles";
 
-// Augment the palette to include an ochre color
-declare module '@mui/material/styles' {
-  interface Palette {
-    charcoal: Palette['primary'];
-    lightGray: Palette['primary'];
-    gray: Palette['primary'];
-  }
+declare module "@mui/material/styles" {
+  interface Theme extends Record<string, any> {}
+  interface ThemeOptions extends Record<string, any> {}
+  interface Palette extends Record<string, any> {}
+  interface PaletteOptions extends Record<string, any> {}
+}
 
-  interface PaletteOptions {
-    charcoal?: PaletteOptions['primary'];
-    lightGray?: PaletteOptions['primary'];
-    gray?: PaletteOptions['primary'];
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    boxed: true;
   }
 }
 
@@ -24,8 +21,8 @@ const theme = createTheme({
   palette: {
     mode: "light",
     common: {
-        black: "#333",
-        white: "#fff",
+      black: "#333333",
+      white: "#fff",
     },
     primary: {
       main: "#1976d2",
@@ -63,12 +60,29 @@ const theme = createTheme({
         root: {
           height: 40,
           textTransform: "none",
+          padding: "auto 24px",
+          variants: [
+            {
+              props: { variant: "boxed" },
+              style: {
+                borderRadius: 0,
+                border: "1px solid",
+                borderColor: "#333333",
+                color: "#333333",
+              },
+            },
+          ],
         },
       },
     },
   },
+  props: {
+    textGradientProps: {
+      background: "-webkit-linear-gradient(45deg, #7400b8 30%, #80ffdb 90%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    },
+  },
 });
-
-
 
 export default theme;

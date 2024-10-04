@@ -55,7 +55,7 @@ const MessageList: React.FC<MessageListProps> = ({
           <MessageBubble
             content={message.content}
             isUser={message.role === "user"}
-            showFooterIcons={streamCompleted && index === messages.length - 1}
+            showFooterIcons={streamCompleted && index === messages.length - 1 && message.role !== "user"}
           />
         </Box>
       ))}

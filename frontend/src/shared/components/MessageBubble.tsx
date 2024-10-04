@@ -43,13 +43,15 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
 
       {showFooterIcons && (
         <Box
+        alignItems={"center"}
+        gap={"9px"}
           sx={{
             display: "flex",
             justifyContent: "flex-start",
-            marginTop: ".25rem",
           }}
         >
-          <IconHeart />
+          <IconHeart size={"18px"} color={colors.gray.main} />
+          <IconHeart size={"18px"} color={colors.gray.main} />
         </Box>
       )}
     </Box>
