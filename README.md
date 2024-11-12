@@ -1,7 +1,5 @@
 # chatbot-ux-explorations
-
-This version tracks the progress with incremental version numbering, reflecting completed, in-progress, and upcoming tasks with relevant emojis.
-**Chatbot UX Explorations** is a collection of prototypes and experiments designed to explore and enhance chatbot user experiences (UX). These explorations span from practical improvements to current chatbot interfaces and interactions—such as making conversations more intuitive and accessible—to more playful ideas that re-imagine how we might use chatbots.
+A collection of prototypes and experiments designed to explore and enhance chatbot user experiences (UX). These explorations span from practical improvements to current chatbot interfaces and interactions—such as making conversations more intuitive and accessible—to more playful ideas that re-imagine how we might use chatbots.
 
 Built with **TypeScript**, this repository leverages the **LangChain** software suite to bring these concepts to life.
 
